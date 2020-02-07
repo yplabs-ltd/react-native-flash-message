@@ -29,7 +29,7 @@ const MessagePropType = PropTypes.shape({
 /**
  * Non-operation func
  */
-const noop = () => { };
+const noop = () => {};
 
 /**
  * Simple random ID for internal FlashMessage component usage
@@ -159,12 +159,29 @@ export const renderFlashMessageIcon = (icon = "success", style = {}, customProps
       );
     case "scoreUp":
       return (
-        <Image style={{ alignSelf: 'center', marginRight: 10 }} source={require("./icons/icUpToast.png")} {...customProps} />
+        <Image
+          style={{ alignSelf: "center", marginRight: 10 }}
+          source={require("./icons/icUpToast.png")}
+          {...customProps}
+        />
       );
     case "scoreDown":
       return (
-        <Image style={{ alignSelf: 'center', marginRight: 10 }} source={require("./icons/icDownToast.png")} {...customProps} />
-      )
+        <Image
+          style={{ alignSelf: "center", marginRight: 10 }}
+          source={require("./icons/icDownToast.png")}
+          {...customProps}
+        />
+      );
+    case "scoreInfo":
+      return (
+        <Image
+          style={{ alignSelf: "center", marginRight: 10 }}
+          source={require("./icons/icInfoToast.png")}
+          {...customProps}
+        />
+      );
+
     default:
       return null;
   }
@@ -212,9 +229,9 @@ export const DefaultFlash = ({
               !!message.backgroundColor
                 ? { backgroundColor: message.backgroundColor }
                 : !!message.type &&
-                !!FlashMessage.ColorTheme[message.type] && {
-                  backgroundColor: FlashMessage.ColorTheme[message.type],
-                },
+                  !!FlashMessage.ColorTheme[message.type] && {
+                    backgroundColor: FlashMessage.ColorTheme[message.type],
+                  },
               style,
             ],
             wrapperInset,
