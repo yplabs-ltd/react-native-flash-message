@@ -203,6 +203,7 @@ export const DefaultFlash = ({
   floating = false,
   icon,
   hideStatusBar = false,
+  textNumberOfLines,
   ...props
 }) => {
   const hasDescription = !!message.description && message.description !== "";
@@ -240,7 +241,7 @@ export const DefaultFlash = ({
           )}
           {...props}>
           {hasIcon && icon.position === "left" && iconView}
-          <View style={styles.flashLabel}>
+          <View style={[ styles.flashLabel, { ... !!textNumberOfLines ? { flex: 1, } : {}} ]}>
             <Text
               style={[
                 styles.flashText,
@@ -252,8 +253,15 @@ export const DefaultFlash = ({
             </Text>
             {!!renderCustomContent && renderCustomContent(message)}
             {hasDescription && (
-              <Text style={[styles.flashText, !!message.color && { color: message.color }, textStyle]}>
-                {message.description}
+              <Text
+                numberOfLines={ textNumberOfLines || undefined }
+                style={[styles.flashText, !!message.color && { color: message.color }, textStyle]}>
+                {
+                  textNumberOfLines === 1 ?
+                    message.description.split('\n').length > 1 ? `${ message.description.split('\n')[0] }···` : message.description
+                    :
+                    message.description
+                }
               </Text>
             )}
           </View>
@@ -586,6 +594,7 @@ export default class FlashMessage extends Component {
     const hideStatusBar = this.prop(message, "hideStatusBar");
     const transitionConfig = this.prop(message, "transitionConfig");
     const renderFlashMessageIcon = this.prop(message, "renderFlashMessageIcon");
+    const textNumberOfLines = this.prop(message, "textNumberOfLines")
     const animated = this.isAnimated(message);
     const animStyle = animated ? transitionConfig(visibleValue, position) : {};
 
@@ -609,6 +618,7 @@ export default class FlashMessage extends Component {
               style={style}
               textStyle={textStyle}
               titleStyle={titleStyle}
+              textNumberOfLines={ textNumberOfLines }
             />
           </TouchableWithoutFeedback>
         )}
