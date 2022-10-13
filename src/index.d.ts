@@ -2,7 +2,7 @@ import * as React from "react";
 import { Animated, ImageProps, ImageStyle, StyleProp, TextStyle, TranslateYTransform, ViewStyle } from "react-native";
 
 export type Position = "top" | "bottom" | "center";
-export type MessageType = "none" | "default" | "info" | "success" | "danger" | "warning";
+export type MessageType = "none" | "default" | "info" | "success" | "danger" | "warning" |"scoreUp" |"scoreDown" | "scoreInfo" | "errorWarning";
 
 export type Icon =
   | MessageType

@@ -182,6 +182,12 @@ export const renderFlashMessageIcon = (icon = "success", style = {}, customProps
         />
       );
 
+      case "errorWarning":
+       return <Image
+        style={{ alignSelf: "center", marginRight: 10 }}
+        source={require("./icons/Error_Circle_20_Red.png")}
+        {...customProps}
+      />
     default:
       return null;
   }
