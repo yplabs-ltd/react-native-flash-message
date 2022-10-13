@@ -61,6 +61,7 @@ export interface MessageOptions {
   titleStyle?: StyleProp<TextStyle>;
   type?: MessageType;
   style?: StyleProp<ViewStyle>
+  textNumberOfLines?: number
   onPress?(): void;
   onLongPress?(): void;
 }
